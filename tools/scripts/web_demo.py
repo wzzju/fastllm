@@ -10,8 +10,8 @@ st.set_page_config(
 
 @st.cache_resource
 def get_model():
-    model = llm.model(sys.argv[1]);
-    return model;
+    model = llm.model(sys.argv[1])
+    return model
 
 def predict(input, history = None):
     model = get_model()
@@ -27,7 +27,7 @@ def predict(input, history = None):
         with st.empty():
             for response in model.stream_response(input, history, one_by_one = False):
                 st.write(response)
-            history.append((input, response));
+            history.append((input, response))
     return history
 
 container = st.container()

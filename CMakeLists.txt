@@ -13,7 +13,7 @@ message(STATUS "PYTHON_API: ${PY_API}")
 
 set(CMAKE_BUILD_TYPE "Release")
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+if (CMAKE_CXX_COMPILER_ID MATCHES "^(Apple)?Clang$")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread --std=c++17 -O2")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX -O2 /std:c++17 /arch:AVX /source-charset:utf-8")
@@ -49,7 +49,7 @@ if (PY_API)
     set(PYBIND third_party/pybind11)
     add_subdirectory(${PYBIND})
     add_compile_definitions(PY_API)
-    
+
     set(Python3_ROOT_DIR "/usr/local/python3.10.6/bin/")
     find_package(Python3 REQUIRED)
 
